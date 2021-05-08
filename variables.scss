@@ -1,0 +1,57 @@
+variables.scss;
+$color:red;
+
+ul{
+  font-sizeL14px;
+  color:$color;
+}
+
+ol{
+  font-size:18px;
+  color:$color;
+}
+
+intall saas
+
+in the terminal
+saas variables.scss:variables.css
+#to automate this process
+in the terminal
+saas --watch variables.scss:variables.css
+
+Easier nesting with scss
+div{
+  font-size: 18px;
+
+  p{
+    color: blue;
+  }
+
+  ul {
+    color:green;
+  }
+}
+
+#inheritence
+%message{
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid black;
+  padding: 20px;
+  margin: 20px;
+}
+
+.success{
+  @extend %message;
+  background-color: green;
+}
+
+.failure{
+  @extend %message;
+  background-color: red;
+}
+ .danger{
+   @extend %message;
+   background-color: orange;
+ }
