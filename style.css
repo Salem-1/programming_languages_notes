@@ -1,0 +1,95 @@
+h1{
+    color:blue;
+    text-align:center;
+      }
+div2{
+  font-family:aerial;
+}
+span {
+  background-color:orange;
+  width: 200px;
+  length: 100px;
+  padding: 20px;//content inside away from border
+  margin: 50px;//away from page edges
+  font-fmaily: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  border: 3px solid black;//borders :)
+}
+table, td,th{
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding:5px;
+}
+#Etfoo{
+  color:blue;
+}
+.div2{
+  color:blue;
+}
+ul > li{
+  color:brown;
+}//children and grand children of UL
+ul  li{
+  color:brown;
+}
+
+button{
+  width:200px;
+  border: 2px solid black;
+  background: green;
+  color:white;
+  height:50px;
+  font-size: 24px;
+}
+button:hover{
+  background:orange;
+}
+a[href="https://facebook.com"]{
+  color:red;
+  border:1px solid black;
+}
+
+@media(min-width: 600px){
+  body{
+    background:yellow;
+  }
+}
+@media(max-width: 599px){
+  body{
+    background:gray;
+  }
+}
+/*Making the webpage media responsive*/
+.row > div {
+  padding:20px;
+  backgroud-color:teal;
+  border:2px solid black;
+}
+#container{
+  display: flex;
+  flex-wrap:wrap;
+}
+#container >div{
+  background: springgreen;
+  font-size:20px;
+  margin:20px;
+  padding:20px;
+  width:200px;
+}
+#grid{
+  background:green;
+  display:grid;
+  padding: 20px;
+  grid-column-gap:20px;
+  grid-row-gap: 10px;
+  grid-template-columns: 200px 200px auto;
+}
+
+.grid-item{
+  background-color:white;
+  font-size=200px;
+  padding:20px;
+  text-align:center;
+}
+/*grid and flex-box help to make mobile responsive design*/
