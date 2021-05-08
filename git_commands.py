@@ -11,3 +11,11 @@ git commit -m "message"
 #save a snapshot of the changes I made to my file
 
 git push
+# saving the changes online 
+
+git commit -am "Message"
+#commiting and adding all files 
+
+git pull
+#getting the latest version of the file from github
+
