@@ -14,4 +14,7 @@ git push
 # saving the changes online
 
 git commit -am "Message"
-#commiting and adding all files 
+#commiting and adding all files
+
+git pull
+#getting the latest version of the file from github
