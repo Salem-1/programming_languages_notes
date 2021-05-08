@@ -18,3 +18,6 @@ git commit -am "Message"
 
 git pull
 #getting the latest version of the file from github
+
+#fixing merge conflicts
+#open file and delete the unwanted lines of code
