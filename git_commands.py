@@ -40,3 +40,22 @@ git checkout -b <branch name>
 
 git checkout <branchname>
 #change your current branch to branchname
+
+git merge <branchname>
+#merge the branchname to the current branching
+
+fork
+# from the github site - you take a copy from the github repository , used in opensource and large projects
+#after you are done with writing code
+
+pull request
+#you submit a request pull to be allowed to get your code  accepted in the repository
+
+
+##############github pages########
+1-make new repository url.github.io
+2-write your code
+3- open git hub settings
+4- github pages
+5-click on your url
+then your site is now any one can access it online
