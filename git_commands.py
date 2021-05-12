@@ -32,3 +32,8 @@ git reset --hard origin/master
 #reset the code the origin ,state take care
 
 ####################branching######################
+git branch
+#tell you which branch you are if __name__ == '__main__':
+
+git checkout -b <branch name>
+#create and change head to the new branch
