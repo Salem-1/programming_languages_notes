@@ -22,4 +22,13 @@ git pull
 #fixing merge conflicts
 #open file and delete the unwanted lines of code
 
+git log
+# get hitstory of all changes
+
+git reset --hard <commit>
+#reset the code to specific commit
+
+git reset --hard origin/master
+#reset the code the origin ,state take care
+
 ####################branching######################
