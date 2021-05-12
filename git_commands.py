@@ -37,3 +37,6 @@ git branch
 
 git checkout -b <branch name>
 #create and change head to the new branch
+
+git checkout <branchname>
+#change your current branch to branchname
