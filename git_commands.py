@@ -21,3 +21,5 @@ git pull
 
 #fixing merge conflicts
 #open file and delete the unwanted lines of code
+
+####################branching######################
