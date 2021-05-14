@@ -1,8 +1,8 @@
 from django import forms
+from django.http import HttpResponseRedirect #redirect to specific url
+from django.urls import reverse # reverse engineer urls as following reverse("appname: template")
 from django.shortcuts import render
 
-tasks = ["foo", "bar", "baz"]
-# Create your views here.
 
 #class for genrating forms, i believe in larger projects it should be in a separate module(file)
 class NewTaskForm(forms.Form):
@@ -10,9 +10,11 @@ class NewTaskForm(forms.Form):
     priority = forms.IntegerField (label="Priority", min_value=1, max_value=10)
 
 def index(request):
+    if "tasks" not in request.session:
+        request.session["tasks"] = []
     return render(request, "tasks/index.html",
     {
-        "tasks": tasks
+        "tasks": request.session["tasks"]
     })
 
 def add(request):
@@ -23,7 +25,9 @@ def add(request):
         if form.is_valid():
             task = form.cleaned_data["task"] # saving the inputted task in task variable
             priority = form.cleaned_data["priority"]
-            tasks.append(task) # adding the inputted task to our list
+            request.session["tasks"] += [task] # adding the inputted task to our session as separate list
+            return HttpResponseRedirect(reverse("tasks:index")) # the reverse() reverse engineer the url
+            #redirect to index of tasks application
         else:
             return render(request, "tasks/add.html", {
             "form": form
