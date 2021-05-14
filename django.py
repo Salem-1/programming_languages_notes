@@ -64,6 +64,11 @@ def index(request): #this function take the http_request that the user made to a
                           #the use of hello/ is to diffrentiate which index for which applicaiton
 def greet(request, variable): #it can take variables 3ady
     return HttpResponse(f"Hello, {variable}")
+
+def greethim(request, variable): #it can take variables 3ady
+    return render(request, "hello/greethim.html",{
+    "name":name   # providing all variables you want to give your template access to
+    })
 #but what url should the user visit to get that response and run the index function?
 #to do this we will need to create a urls.py file to handle the urls for each function
 ##############################urls.py##############
@@ -81,28 +86,89 @@ urlpatterns = [
     views.greet, name="greet")
 ]
 
-#####
+###################appname/urls.py
 #in the main project url
 from django.urls import include, path
 #then open urls.py for the main project
 #then add
 
+app_name = "applicationname"
 urlpatterns = [
 
     ,path('applicationname/',include("applicationname.urls"))
 ]
 
 #####################################html templates##############
-
-#for example
-
+################static-styles.css###################
+#make the following file path inside the app directory
+#static/appname/styles.css
+#for example grretme
+{%load static%}
+#laoding the static file
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+     #using the css static file in our template
+    <link rel="stylesheet" href="{% static 'appname/styles.css' %}">
+
     <title>hello</title>
   </head>
   <body>
-    <h1>Ahlan ya siedy</h1>
+    <h1>Ahlan ya {{name}}</h1> # providing html with your variables inside {{}}
+    #using conditions in html template Django/jinja syntax
+    {%if condition%}
+    do something
+    {%else%}
+    do otherthing
+    {%endif%}
+
+    ##looping
+    {%for item in items %}
+    {{item}}
+    {% endfor %}
   </body>
 </html>
+################using layout.html to make life easY####################
+{%load static%}
+#laoding the static file
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+     #using the css static file in our template
+    <link rel="stylesheet" href="{% static 'appname/styles.css' %}">
+
+    <title>hello</title>
+  </head>
+  <body>
+  #here the place where it will be changed in every template
+     {% block body %}
+     {% endblock %}
+     #that's it
+  </body>
+</html>
+#########
+#let's implement it on the above
+#write the first two lines
+{% extends "tasks/layout.html" %}
+{% block body %}
+#but your page content here
+    <h1>Ahlan ya {{name}}</h1> # providing html with your variables inside {{}}
+    #using conditions in html template Django/jinja syntax
+    {%if condition%}
+    do something
+    {%else%}
+    do otherthing
+    {%endif%}
+
+    ##looping
+    {%for item in items %}
+    {{item}}
+    {% endfor %}
+
+    #linking to other page
+    <a href="{% url 'appname:index' %}">hyperlinked txt</a>
+#after you are done with the page content
+#write this line of code
+{% endblock %}

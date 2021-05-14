@@ -4,11 +4,9 @@ import datetime
 
 def index(request):
     now = datetime.datetime.now()
-    if now.month == 1 and now.day == 1:
-        result = "yes"
-
-    else:
-        result = "NO"
+    month = now.month
+    day = now.day
+    result = day + month
     return render(request, "newyear/index.html",
     {
     "result": result
