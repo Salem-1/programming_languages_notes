@@ -1,0 +1,10 @@
+{% extends 'flights/layout.html'%}
+  {% block body%}
+  <h1>Flights</h1>
+  <!-- looping over and accessing properties of Flight.objects.all()-->
+   {% for flight in flights %}
+    <li><a href="{% url 'flight' flight.id  %}"> Flight ({{flight.id}}) departuring from {{flight.origin}} to {{flight.destination}}, will take {{flight.duration}} hour.</a></li>
+    {% empty %}
+    <h3>No flights to display</h3>
+    {% endfor %}
+  {% endblock %}

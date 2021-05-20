@@ -1,0 +1,7 @@
+power shell commnads:
+
+#opening a file
+invoke-item <filename>
+
+#creating new file
+new-item -Path "the/file/path/here/filename.extension" -ItemType File

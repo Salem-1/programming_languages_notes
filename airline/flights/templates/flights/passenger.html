@@ -1,0 +1,10 @@
+{% extends 'passengers/layout.html'%}
+  {% block body%}
+  <h1>passenger {{passenger.id}}</h1>
+    <ul>
+      <li>Origin {{passenger.first}} {{passenger.last}}</li>
+      <li>Destination {{passenger.flight}}</li>
+      <li>Duration {{passenger.duration}}</li>
+    </ul>
+
+  {% endblock %}

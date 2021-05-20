@@ -1,0 +1,119 @@
+// data types in sqlite3
+TEXT  Char(if you know your char size), VARCHAR(up to number of size)
+NUMERIC  like boolean/date ..
+INTEGER like BIGINT(large numbers) , SMALLINT
+REAL  , like FLOAT , DOUBLE(for more percision than float)
+BLOB Binary large object
+
+--------------------
+Creating tables
+CREATE TABLE table_name (
+column_name data_type PRIMARY KEY AUTOINCREMENT, // autoincremient is optional , as well as the PROMARY KEY
+column_name data_type condition, // NOT NULL for exanple
+column_name data_type,
+column_name data_type,
+column_name data_type // FOREIGN KEY can be specified also
+);
+
+conditions or cnstrains:
+------------------
+CHECK (condition)
+DEFAULT
+NOT NULL
+PRIMARY KEY
+UNIQUE  //no data repeated
+------------INSERTION
+INSERT INTO table_name
+  (column_name,column_name,column_name)
+  VALUES(value1, value2, value3);
+--------------------
+Retrieving data :
+-----------
+
+SELECT * from table_name'; //select all data from that table
+
+SELECT cloumn_name, coloumn_name2 FROM table_name ; // retriece the 2 specified rows
+
+SELCT * FROM table_name WHERE condition; // like id=3 ...ect
+SELCT * FROM table_name WHERE condition AND condition OR condition;
+SELCT * FROM table_name WHERE column_name in (result1, result2 .. );
+SELCT * FROM table_name WHERE column_name LIKE "%name%"; // wild card , get me all results that has name regardless what after or before
+-----------
+updates
+------
+
+UPDATE table_name
+SET column = value
+WHERE condition //optional
+AND/OR/LIKE condition //optional
+;
+
+--------------------
+delete
+------
+DELETE FROM table_name
+WHERE condition; //optional
+
+
+
+for nicer presenttation in the terminal
+---------------------------
+.mode columns //to present data as columns
+.headers yes  // to present the headers along with the data
+
+
+-------------------------functions
+AVERAGE
+COUNT
+MAX
+MIN
+----------------------other clauses after WHERE if it's there
+LIMIT //specify number of needed output
+ORDER BY
+GROUP BY
+HAVING
+--------------------------------------------------
+relationship types:
+--------------
+1-One to many .\\ like one flight might have many passengers on it
+2-Many to many. // many passengers have flights, where a passenger have more than one flight, exedra // can be stored in association table (where columns are IDs of other tables )
+----------------------------
+you can make association table,
+where has columns of IDs of two or more table,
+think of it like the join command but in a table instead
+----------------------------------------the famous join query
+SELECT column1, coloumn_name2
+FROM table1
+JOIN table2
+ON column1.table1 = column1.table2
+
+//this is an inner join
+//now has the 2 table related to each other as one table to query from
+
+types of join:
+--------
+JOIN / INNER JOIN //join two tables and return results that only matches the two tables
+//think of it as the intersection of two circles
+
+LEFT OUTER JOIN //something in the right table doesn't match something on the right
+//think of it as two intersecting cricles where the whole left circle highlighted including the intersection
+
+RIGHT OUTER JOIN //the stereo isomer of the left outer join
+
+FULL outer join // all the data except the common
+// think of it as two intersecting circles where the non intersecting parts are highlighted from the right and left one
+
+--------------------------optimization of queries
+INDEX is an additional data structure that takes time and memory but save query time(make it more effeceint)
+
+CREATE INDEX   //as creating index in the back of the book
+
+CREATE INDEX index_name ON table (column);// to make it more effecient to search on that specific column
+
+--------------------------SQL injections------
+
+hacker'-- this command comment what is coming after it mr genius
+
+----------------------------Race conditions
+the refrigrator syndrome
+you lock the db till the insertion done then release the lock 
