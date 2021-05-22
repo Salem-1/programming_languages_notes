@@ -120,6 +120,9 @@ document.querySelector('button').addEventListener('click',count);
 
  document.addEventListener('DOMContentLoaded',function(){
       document.querySelector('button').onclick =count;
+      //make the counter count automatically
+      //this is for the countdown features in the website
+      setInterval(count,1000)
     })//option 2
    //notice it's not count(), it's just count
    ;
@@ -223,3 +226,92 @@ onkeyup
 onload
 onblur
 ....
+
+////making to do list simple project
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>To do list</title>
+    <script >
+    //remember the seceon t in content sir
+
+//alert("script is working");
+    document.addEventListener('DOMContentLoaded', function(){
+
+      //disabled the submit button to protect the user from themseleves not to submit an emty task
+       document.querySelector('#submit').disabled = true;
+
+       //enabling the submit button when the user type something down
+       document.querySelector('#task').onkeyup = () =>{
+         // if the value of the task is not empty
+         if(document.querySelector('#task').value.length > 0 )
+           {
+             document.querySelector("#submit").disabled = false;
+           }
+         else{
+         document.querySelector("#submit").disabled = true;
+            }
+       }
+    //   alert("DOMContenLoaded")
+       //when the form is submitted do the followoing
+
+ document.querySelector('form').onsubmit = () =>{
+   //alert("form selected");
+
+    // don't forget the # with the id sir
+  //storing the task inputted in a variable
+  const task = document.querySelector("#task").value;
+   //creating an element inside html #Wow!
+   let li =document.createElement('li');
+   //inserting the task inside li element created up
+   li.innerHTML = task;
+  //alert("trying to append")
+   //appending the li item in the tasks ul
+   document.querySelector("#tasks").append(li);
+   document.querySelector('#task').value = '';
+//  alert('mision accomplished')
+   //stop the form from submitting after the task is appended
+   document.querySelector('#submit').disabled = true;
+   return false;
+   alert("error in appending and returning false of submission")
+ }
+})
+   </script>
+  </head>
+  <body>
+    <h1>task</h1>
+    <ul id='tasks'>
+    </ul>
+    <form>
+      <input type="text" id="task" placeholder="New Task" >
+      <input id="submit" type="submit" >
+    </form>
+
+  </body>
+</html>
+
+
+function(arg){
+  return value;
+}
+//can be written as
+arg => value;
+///////////////here comes an amazing feature, the local storage
+localStorage.getItem(key)
+localStorage.setItem(key,value) ;
+
+//js objects like dictionaries in python
+
+object = {kye: 'value',
+          key2: 'value2'}
+
+//now let's  dive in the API most important topic using:
+//JSON java script object notation
+//AJAX or ajax = asynchronous java script
+//allow  us to make additional information to use in our page
+//make a request to webpage and return it's promise = data of the requested site that may not come immediatly by the way
+fetch('url')
+//remember to read the API documentation of each used  API
+//how to round decimals
+.toFixed(#)//# the number of digits to be rounded

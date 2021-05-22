@@ -2,16 +2,39 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>To do list</title>
-  </head>
-  <body>
-    <h1>task</h1>
-    <ul id='tasks'>
+   <script>
+   //checking weather we already has value for counter in the local storage or note
+   if(! localStorage.getItem('counter')){
+     localStorage.setItem('counter', 0);
+   }
+   function count(){
+     //getting the value of the item from the local storage
+     let counter = localStorage.getItem('counter')
+     counter++;
+     const heading  = document.querySelector('h2');
+        heading.innerHTML = counter;
+        //storing the counter item in the local storage in the browser
+        localStorage.setItem('counter', counter);
+     //if ((counter) % 10 === 0){  //  % mod return the remainder
+       //alert(`counter is ${counter}`)
+     //}
 
-    </ul>
-    <form>
-      <input type="text" id="task" placeholder="New Task" >
-      <input type="submit" >
-    </form>
+    }
+
+document.addEventListener('DOMContentLoaded',function(){
+     document.querySelector('h2').innerHTML = localStorage.getItem('counter')
+     document.querySelector('button').onclick =count;
+     //make the counter count automatically
+     //this is for the countdown features in the website
+
+   })//option 2
+    </script>
+    <title>counter</title>
+  </head>
+    <body>
+      <h2>0</h2>
+    <button > count</button>
+
+    </body>
   </body>
 </html>
