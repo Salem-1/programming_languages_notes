@@ -312,6 +312,12 @@ object = {kye: 'value',
 //allow  us to make additional information to use in our page
 //make a request to webpage and return it's promise = data of the requested site that may not come immediatly by the way
 fetch('url')
+.then(convert.json())//or text , you can convert to the format you like
+.then(data =>{}) do//dosomething with the data you got
+.catch(error =>{            //catching the error if it happened and print it in the console
+  console.log("Error: ",error);
+});
+//Alf mabrook ya a7mad ya akhoia........
 //remember to read the API documentation of each used  API
 //how to round decimals
 .toFixed(#)//# the number of digits to be rounded
