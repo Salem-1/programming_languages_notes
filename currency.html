@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Currency exchange</title>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        alert('conetnt loaded')
+      document.querySelector('form').onsubmit = function(){
+        alert('formsubmitted')
+              //remember to write down the link correctly
+              //making a request to the API link to get  the exchange rates
+              fetch('http://api.xchangeratesapi.io/v1/latest?access_key=e71a4897ffabb659f43a19a9f8b838ec&format=1')
+              .then(response => response.json())
+              .then(data => {
+                if(data)
+                alert('datafetched')
+                 let currency = document.querySelector('#currency').value;
+                  let rate = data.rates[currency]; // the use of [] to access variable
+                  if(rate !== undefined)
+                  {
+                  alert(`the rate is ${rate}`)
+                  document.querySelector('#result').innerHTML = `1 USD = ${rate.toFixed(3)} ${currency}`;//to fixed round the decimals
+                  }
+                  else{
+                    document.querySelector('#result').innerHTML = `the ${currency} is invalid`;
+                  }
+                })
+                  .catch(error =>{
+                    console.log("Error: ",error);
+                  });
+
+
+
+   return false
+   }
+ });
+        //return the response as json
+        //then print it out in the cosole
+    </script>
+  </head>
+  <body>
+<h1>currencey</h1>
+<form >
+  <input type="text" id="currency" placeholder="currency">
+  <input type="submit" id="submit" value="Convert">
+</form>
+
+<div id="result">
+
+</div>
+  </body>
+</html>
