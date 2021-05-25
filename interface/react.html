@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+    <meta charset="utf-8">
+    <!--adding the react, reactDOM and Babel javascript packages -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>React</title>
+
+  </head>
+  <body>
+  <!--we will insert all of our application inside the div with id="app" through the react/babel packages -->
+    <div id="app"></div>
+    <!--this is a jsx language which will be interpreted as javascript-->
+    <script type="text/babel">
+      //now we will our applications using OOPS
+      class Hello extends React.Component{   //R.C are capitalized sir, and remeber the extends sir
+        render(){
+          return(
+          <h2>Hello{this.props.name}!</h2> //this isthe way of inserting a variable
+          //this means the hello object .props I access it's property .name I will call that property name
+          )
+        };
+      };
+
+
+
+      //making the new class called App which will be a react component
+      class App extends React.Component{
+        constructor(props){ //defining the properties of the class
+          super(props); //don't worry much about this line, I believe it has something to do with inheritance in the future
+          this.state={   //creating the properties as dictionary and defining thier initial state
+            count:20,
+            score:1,
+            first:1,
+            second:1
+          };
+        }
+
+      //each react component needs a function called render()
+      //render() return what HTML should display when you return this component
+        render(){
+          //here is where JS JSX comes in
+          //this.Click will run the count function let's define it down there
+          return(
+
+            <div>
+              <div>{this.state.first} + {this.state.second}</div>
+              <div>the score is {this.state.score}</div>
+              <p></p>
+              <h1>{this.state.count}</h1>
+              <button onClick={this.count}>Count</button>
+              <p>the current count is {this.state.count}</p>
+              <Hello name="Abo 7mied"/> //props or properties can be provided to the classes
+              <Hello/> //WE CAN USE CLASSES INSIDE OTHER CLASSES ///think of it as variables or arguments
+
+            </div>
+          )};
+          count = () =>{
+            this.setState(state =>({ //old state,don't forget the this.sir
+                count: state.count + 1      //new state
+            }))// a function from the old state to the new state
+          }
+        };
+
+
+       //now let's put our app component into the DoM
+       ReactDOM.render(<App />, document.querySelector('#app')); //ReactDOM.render(<class_name />, document.querySelector('#id')) means get me that element with id and insert the following appname in it
+
+    </script>
+  </body>
+</html>

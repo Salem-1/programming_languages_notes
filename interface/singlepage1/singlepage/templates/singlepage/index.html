@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <script type="text/javascript">
+        // when i press back in the browser go back to the last part of the page I have been on
+        window.onpopstate = function(event){ //when I pop something from the history, take event as argument
+          console.log(event.state.section);// what state that was requested from the user history
+          showSection(event.state.section);// run our showSection() function to show it to the world , whoooo
+        }
+
+
+      //fetching the section
+      function showSection(section){
+        //alert(`fetching data of:/sections/${section}`) //take care to use / not \ in the url sir
+        fetch(`/sections/${section}`)
+        .then(response => response.text()) //takin gthe response and converting it ot string
+        .then( text =>{ //taking the striin and inserting it in the content div
+          //alert(typeof text)
+            console.log(text);
+            document.querySelector("#content").innerHTML = text;
+            });
+      };
+
+      document.addEventListener("DOMContentLoaded", ()=>{
+        //alert('DOm loaded')
+        document.querySelectorAll("button").forEach(button =>{
+          //alert(`button is ${button}`)
+          button.onclick = function(){
+            //alert(`button clicked ${this.dataset.section}`)
+            const section = this.dataset.section;
+            history.pushState({section: section}, "",`section${section}`);//saving each change the user do in the history of the browser
+            //history.pushState({section: section} #this is the data stored in this history item, ""# this is the titile and most browsers will ignore it,`section${section}` #here is what shoulf go in the url)
+            showSection(section);
+          };
+        });
+      });
+
+      //showing the section upon the user request
+
+    </script>
+    <meta charset="utf-8">
+    <title>Sections</title>
+  </head>
+
+  <body>
+    <h1>Choose one section</h1>
+    <button data-section="1">Section 1</button>
+    <button data-section="2">Section 2</button>
+    <button data-section="3">Section 3</button>
+    <div id="content">
+
+    </div>
+  </body>
+</html>

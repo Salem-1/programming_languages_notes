@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Animation</title>
+<style>
+  /*applying some animation features using css*/
+ /*We can define different frames*/
+  @keyframes growormove { /*decide at start and the end what should the style properties be*/
+      0%{
+        /*font-size:20px;*/
+        left:0%;
+      }
+      50%{
+        /*font-size:20px;*/
+        left:50%;
+      }
+      100%{
+        /*font-size: 100px;*/
+        left:0%;
+      }
+  }
+  h1{
+    position: relative;
+    animation-name: growormove;
+    animation-duration: 2s;
+    animation-fill-mode: forward;
+    animation-iteration-count: infinite;
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    const h1 = document.querySelector('h1');
+    h1.style.animationPlayState = 'paused';
+    document.querySelector('button').onclick = () =>{
+      if(h1.style.animationPlayState == 'paused'){
+        h1.style.animationPlayState = 'running';
+      }
+      else{
+        h1.style.animationPlayState = 'paused';
+      }
+    }
+  })
+</script>
+  </head>
+  <body>
+    <button >Move it or Stop it انت و نيتك بقي يا باشا متوجعش دماغنا عالمسا عشان مش ناقصة فرهدة</button>
+      <h1><img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/American-cockroach.jpg" alt="sorsar" width ="200 px"></h1>
+  </body>
+</html>
