@@ -7,7 +7,25 @@
     <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <title>React</title>
+
+    <style media="screen">
+      /*styling our jsx*/
+      #app{
+        text-align:center;
+        font-family: sans-serif;
+      }
+
+      #problem{
+        font-size: 72px;
+      }
+
+      #win{
+        font-size:72px;
+        background-color: green;
+        text-align: center;
+      }
+    </style>
+     <title>React</title>
 
   </head>
   <body>
@@ -32,10 +50,11 @@
         constructor(props){ //defining the properties of the class
           super(props); //don't worry much about this line, I believe it has something to do with inheritance in the future
           this.state={   //creating the properties as dictionary and defining thier initial state
-            count:20,
-            score:1,
-            first:1,
-            second:1
+            count: 20,
+            score: 1,
+            first: 1,
+            second: 1,
+            response: ""
           };
         }
 
@@ -43,21 +62,63 @@
       //render() return what HTML should display when you return this component
         render(){
           //here is where JS JSX comes in
+          //defining the winning score
+        if (this.state.score === 10){
+          return(
+          <div id="win">
+            You won!
+          </div>
+          )
+        }
           //this.Click will run the count function let's define it down there
+          //onChange whenever any change happens in that field run the update response function
+          //onKeyPress means when the  user press any key the inputkeyPress function which I will define later
           return(
 
             <div>
-              <div>{this.state.first} + {this.state.second}</div>
+              <div id="problem">{this.state.first} + {this.state.second}</div>
+              <input autofocus="on" onKeyPress={this.inputKeyPress} onChange={this.updateResponse} value={this.state.response}/>
               <div>the score is {this.state.score}</div>
               <p></p>
               <h1>{this.state.count}</h1>
-              <button onClick={this.count}>Count</button>
+              <button  onClick={this.count}>Count</button>
               <p>the current count is {this.state.count}</p>
               <Hello name="Abo 7mied"/> //props or properties can be provided to the classes
               <Hello/> //WE CAN USE CLASSES INSIDE OTHER CLASSES ///think of it as variables or arguments
 
             </div>
           )};
+          //defining the onKeyPress funciton in varialble
+          inputKeyPress = (event) =>{   //take care to the function  name to be as above sir
+            if(event.key === 'Enter'){  //event.key is property of that event tells you which key was pressed, we are here checking weather the Enter key was pressed
+              const answer = parseInt(this.state.response)
+              if (answer === this.state.first + this.state.second){
+                //user got  question right
+                this.setState ( state =>({ //take care for the ( sir, # this stuff gettin messy easily
+                  score : state.score + 1,
+                  //updating the equation with a new question
+                  first: Math.ceil(Math.random() * 10),//Math.random get a random num bettween 0 and1, Math.ceil get the nearest integer
+                  second: Math.ceil(Math.random() * 10),
+                  response: ""
+                }))
+              }
+              else{ //the user got the score wrong
+
+                  //user got  question right
+                  this.setState ( state =>({ //take care for the ( sir, # this stuff gettin messy easily
+                    score : state.score - 1,
+                    response: ""
+                  }))
+              }
+            }
+          };
+
+          updateResponse = (event) => {
+            this.setState({ //changing the state of response prop
+             response: event.target.value             //event.target the input fieldm .value => what is the user typed in
+           });
+         };
+
           count = () =>{
             this.setState(state =>({ //old state,don't forget the this.sir
                 count: state.count + 1      //new state
