@@ -1,0 +1,15 @@
+#making github workflow
+name: Testing  # I want the testing to the code to be done
+on: push    #when? whenever there is a push to the git repository is going to happen
+
+#what are the jobs you want to run
+jobs:
+  test_project:
+    runs_on: ubunto-latest  # what machine should it run on? run on the latest version of linux (virtual machine)
+    steps:      #what steps should happen?
+     -uses: actions/checkout@v2   #special github synyax, allow me to checkout my code in the repository and allow me to run programs on my code
+     #you can write the actions you like by the way
+     -name: Run Django unit tests # this is just description to know what is happening in this particular step
+        run: |   # here what I would like to run, first I will install django to be able to run those test, may be in other projects I will install other requirements,then I will run python3 manage.py test , which means run all of the tests on this particular application 
+          pip3 install --user django
+          python3 manage.py test

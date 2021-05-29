@@ -74,3 +74,9 @@ parseInt(string) //convert a string to an integer
 //reactive is another way of programming , not  imperative programming
 ///////////now it's time for react and imperative programming//////
 //react will allow us to design user interactive web pages
+
+
+//react packages
+        React
+        ReactDOM
+        Babel
