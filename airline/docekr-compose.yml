@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+    db:
+         image: postgres # the type of database used instead of sqlite in realworld
+
+    web:
+        build: .
+        volumes:
+            - .:/usr/src/app
+        ports:
+            - "8000:8000"

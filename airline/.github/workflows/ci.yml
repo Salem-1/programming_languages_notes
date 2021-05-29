@@ -10,6 +10,58 @@ jobs:
      -uses: actions/checkout@v2   #special github synyax, allow me to checkout my code in the repository and allow me to run programs on my code
      #you can write the actions you like by the way
      -name: Run Django unit tests # this is just description to know what is happening in this particular step
-        run: |   # here what I would like to run, first I will install django to be able to run those test, may be in other projects I will install other requirements,then I will run python3 manage.py test , which means run all of the tests on this particular application 
+        run: |   # here what I would like to run, first I will install django to be able to run those test, may be in other projects I will install other requirements,then I will run python3 manage.py test , which means run all of the tests on this particular application
           pip3 install --user django
           python3 manage.py test
+
+
+#Docker is containerization software, as running the software in container with all needed packages,
+#help in the continous delevery where the updates of your app will run in the same environment as the development one
+#VM : run as entire separate computer on your machine////Docekr is lighter wait, wher every container has separate set of libraries, make sure the consistancy of program is going to run any where
+#Dockerfile describe the insturction to make docker image , which has all the libraries and containers we like to have
+#for example
+#FROM python:3      #this is another docker image that install python3
+#COPY . /usr/src/app    # waht do i want to do to runt he following container => I want to copy every thing to the following  "/usr/src/ap"p
+#WORKDIR /usr/src/app  #then change my working directory to this location which has all  my needed files and folders
+#RUN pip install -r requirements.txt #then I want to install all my requirements, that I already put in requirements.txt "all required packages are here"
+#CMD ["python3", "manage.py", "runserver", "0.0.0.0.8000"] #when I start the container here is the command that i want to run => python manage.py runserver 0.0.0.0:8000
+
+#this docker file has all the requirements to run my web application
+#any one using the same docker file can generate a container that has all the needed enviroment installed packages
+#even people with different os can has container that run with the same operating way to speed up the process
+
+# I can make another container for testing or simulating code running on webserver
+#Docker compose, when you make 2 Docker containers and you want them to talk to each other
+
+"""
+version: '3'
+# I use version 3 of docker compose
+services:  #using yml file for my workflow like github
+           #what services I want to be part of my application
+           #each service will be based on a different docker image
+    db: #one service for the database
+         image: postgres # the type of database used instead of sqlite in realworld
+        #don't worry  about it someone already wrote an image for postgres
+
+
+    web: #another service for my webapplication
+        build: . #it will be built on the Dockerfile in my current directory
+        volumes:
+            - .:/usr/src/app # my current directory should correspond to /usr/src/app
+        ports:
+            - "8000:8000"  #When I run this , I would like port 8000 in the container to correspond to port 8000 in my own computer
+            #so I can open the webapplication in my web browser
+
+after running docker with the command
+dcoekr-compose up
+
+you can open thebroweser
+
+docker ps
+# to know which images are running
+#then copu the container id
+docker exec -it <container_id> bash -l
+#I want to be abel to interact with a shell to interact with this container
+#then you can run your python manage.py commands , congrats
+#install linux upunto today inshalla 
+"""
